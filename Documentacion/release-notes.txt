@@ -9,6 +9,10 @@ django-bootstrap-icons
 django-crispy-forms
 crispy-bootstrap5
 pylint
+pytest-django
+pytest
+importlab
+exportlab
 
 Ver. 0.0.1
 1. Añadida representacion de datos de las tablas clientes y Proveedores
