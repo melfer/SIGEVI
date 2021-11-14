@@ -1,0 +1,58 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0 -- C:\Users\Win10-PC\Desktop\Proyectos\.envs\myenv\Scripts\python.exe
+cachedir: .pytest_cache
+django: settings: core.settings (from ini)
+rootdir: C:\Users\Win10-PC\Desktop\Proyectos\SIGEVI, configfile: pytest.ini
+plugins: cov-3.0.0, django-4.4.0
+collecting ... ============================================= Prueba de Registro, Login y templates========================
+collected 25 items
+
+test/test_gestion.py::test_categoria_create PASSED
+test/test_gestion.py::test_categoria_search PASSED
+test/test_gestion.py::test_categoria_update PASSED
+test/test_gestion.py::test_categoria_delete PASSED
+test/test_gestion.py::test_marca_create PASSED
+test/test_gestion.py::test_marca_search PASSED
+test/test_gestion.py::test_marca_update PASSED
+test/test_gestion.py::test_marca_delete PASSED
+test/test_inventario.py::test_producto_buscar PASSED
+test/test_inventario.py::test_producto_actualizar PASSED
+test/test_inventario.py::test_producto_create PASSED
+test/test_main.py::test_user_signup PASSED
+test/test_main.py::test_user_login PASSED
+test/test_personas.py::test_cliente_creacion PASSED
+test/test_personas.py::test_cliente_buscar PASSED
+test/test_personas.py::test_cliente_update PASSED
+test/test_personas.py::test_cliente_delete PASSED
+test/test_personas.py::test_proveedor_creacion PASSED
+test/test_personas.py::test_proveedor_buscar PASSED
+test/test_personas.py::test_proveedor_actualizar PASSED
+test/test_personas.py::test_proveedor_eliminar PASSED
+test/test_main.py::test_render_views[register] PASSED
+test/test_main.py::test_render_views[login] PASSED
+test/test_personas.py::test_render_view_cliente_main PASSED
+test/test_personas.py::test_render_view_cliente_nuevo PASSED
+WARNING: Failed to generate report: No data to report.
+
+
+
+============================== warnings summary ===============================
+..\.envs\myenv\lib\site-packages\django\utils\version.py:6
+  C:\Users\Win10-PC\Desktop\Proyectos\.envs\myenv\lib\site-packages\django\utils\version.py:6: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+    from distutils.version import LooseVersion
+
+test/test_gestion.py: 1007 warnings
+test/test_inventario.py: 186 warnings
+test/test_main.py: 107 warnings
+test/test_personas.py: 336 warnings
+  C:\Users\Win10-PC\Desktop\Proyectos\.envs\myenv\lib\site-packages\django\utils\asyncio.py:19: DeprecationWarning: There is no current event loop
+    event_loop = asyncio.get_event_loop()
+
+test/test_main.py::test_user_signup
+  <frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+
+---------- coverage: platform win32, python 3.10.0-final-0 -----------
+
+===================== 25 passed, 1638 warnings in 32.77s ======================

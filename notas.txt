@@ -1,0 +1,45 @@
+
+NOTAS DE LA VERSION:
+
+Paquetes necesarios:
+django
+django-bootstrap-v5
+django-bootstrap5
+django-bootstrap-icons
+django-crispy-forms
+crispy-bootstrap5
+pylint
+
+Ver. 0.0.1
+1. Añadida representacion de datos de las tablas clientes y Proveedores
+2. Habilitada Gestion de Clientes, ahora se puede Crear, Consultar, Actualizar y Eliminar Datos de un clientes
+3. Ahora, se pueden consultar los clientes desde el listado general solo escribiendo su ID y dando clic en buscar
+4. Ahora, se pueden consultar los proveedores desde el listado general solo escribiendo su id, agregarlos, actualizarlos y eliminarlos
+
+
+
+Ver. 0.0.2
+1. Añadida la representacion de datos de Marca, Categoría y Productos
+2. Añadida Gestion de Marcas, ahora puede añadirse, actualizarse y eliminarse una marca, aparte de consultar una marca
+3. Añadida Gestion de Categorias, ahora puede añadirse, actualizarse y eliminarse una categoria, aparte de consultar una en especifico
+4. Añadida Gestion de Productos, ahora se pueden añadir, actualizar, eliminar y consultar.
+
+
+Ver 0.0.3
+1. Ahora se implementa carrito de compras, se puede añadir y eliminar productos en el, y el carrito indica el total de la compra
+2. Correccion de errores y mejoras menores
+3. Ahora, las cantidades en carrito de compras se restan de la db
+4. Corregido error de consulta de categoria por producto, ahora al hacer clic en el boton relacionados, el sistema muestra una lista de elementos de la misma categoria
+5. Dependencia nueva requerida : reportlab
+6. Ahora se pueden hacer reportes PDF, por lo que se generan facturas y cotizaciones
+
+
+
+Ver 0.0.4
+1. Corrección de errores y mejoras en Modulo de Clientes
+2. Correccion de errores y mejores en Modulo de Proveedores
+3. Correccion de errores y mejores en Modulo de Marca
+4. Correccion de errores y mejores en Modulo de Categoría
+5. Correccion de errores y mejores en Modulo de Productos
+6. Correccion de errores y mejores en exportación de PDF
+7. Añadido botón "Añadir nuevo" en cada interfaz de listado general
