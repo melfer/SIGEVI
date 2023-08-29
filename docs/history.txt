@@ -1,0 +1,127 @@
+Historial de Cambios:
+
+Versión 0.0.0.1 
+- Se ha dockerizado el proyecto para facilitar las pruebas, se requiere docker y docker-compose para la prueba del proyecto.
+- Se han habilitado las siguientes IP para su observacion:
+
+1- 10.10.10.5:5432 postgresql
+2- 10.10.10.6:8000 django
+3- 10.10.10.7:5173 vuejs
+
+NOTA: Se pueden vincular mas servicios como haga falta, respetando el pool definido en 10.10.10.0/24
+    Para usar el producto, escriba docker-compose up en la raíz del proyecto. si se solicita construir imagen nueva,
+    escriba docker-compose build y luego docker-compose up.
+- Se han creado proyectos en blanco en django y vuejs con sus respectivas dependencias. Tener en cuenta que vuejs será el puente de entrada
+- No se requiere configuracion adicional.
+- Se ha definido la url base para las consultas, se puede acceder a ella desde http://127.0.0.1:8000/api/v1/, a partir de ahora,
+será invocada en la documentacion como {base_url}
+
+Versión 0.0.0.2: 
+- Se ha añadido la configuracion en django para el uso con JWT, se ha establecido lifetime de los tokens de la siguiente manera:
+1. access de 30 minutos
+2. refresh de 1 día
+
+- Se añadió representacion de usuario, ahora el sistema puede crear usuarios y autenticarlos con JWT.
+- Se han escrito permisos de usuario, ahora las tareas requieren validacion para ejecutarse.
+
+Versión 0.0.0.3:
+- Se ha creado la aplicacion de Personas en django con las siguientes tareas:
+1. CRUD de Clientes
+2. CRUD de Proveedores
+
+rutas habilidatas:
+- /personas/clientes  (GET,POST)
+    Esta url permite listar todos los clientes y crear uno nuevo.
+- /personas/clientes/<id> (GET,PUT,DELETE)
+    Esta url permite obtener, modificar y eliminar un cliente.
+- /personas/clientes/search/<id> (GET)
+    Esta url permite buscar un cliente por su id, retorna un listado de 10 clientes con datos similares al id.
+- /personas/proveedores (GET,POST)
+    Esta url permite listar todos los proveedores y crear uno nuevo.
+- /personas/proveedores/<id> (GET,PUT,DELETE)
+    Esta url permite obtener, modificar y eliminar un proveedor.
+- /personas/proveedores/search/<id> (GET)
+    Esta url permite buscar un proveedor por su id, retorna un listado de 10 proveedores con datos similares al id.
+
+Versión 0.0.0.4:
+- Se corrigió un error de consultas en django
+- Se ha empezado a crear la interfaz en vuejs
+    1. Ahora, se creó modulo de inicio de sesión con sus roles y permisos
+    2. Se ha configurado la interfaz para que se finalice la sesion al detectar inactividad
+        entiendase por inactividad que no se ha hecho ninguna peticion a la api en 15 minutos o que, no se observe movimiento del mouse en 15 minutos.
+    3. Añadida represetacion de clientes. Ahora se pueden realizar tareas CRUD con clientes.
+
+Versión 0.0.0.4 - a:
+- Se han habilitado permisos en django, ahora el sistema responde con 401, 403 y 500 según corresponda.
+- Se han creado vistas para manejo de errores 401, 403 y 500, ahora vuejs muestra errores en caso de no tener permisos o de que el servidor no responda.
+- Se ha iniciado el desarrollo de las vistas de Proveedores: 
+    1. Se ha creado la vista de listado de proveedores.
+    2. Se ha creado la barra de busqueda de proveedores
+    3. Se ha habilitado la opcion de eliminar proveedor
+    4. Se ha habilitado la opcion de editar proveedor
+        OBS: Se ha detectado una falla en la opcion. El procedimiento se realiza satisfactoriamente, sin embargo no es posible hacer que el componente compruebe los datos actualizados. Se debe corregir. 
+    5. Se ha habilitado la opcion de crear proveedor
+NOTA: fuera de la observación definida, se hace push de la versión bajo la nota de que las operaciones funcionan correctamente.
+
+Versión 0.0.0.4 - b:
+- Se han rediseñado las vistas, se ha separado el formulario de edición de datos de la vista de detalles en proveedores y clientes. Ahora cuando se edita un registro, se redirecciona automaticamente a la vista de detalles.
+- Se ha creado redireccion de creación, ahora se redirecciona a detalles automaticamente cuando el proceso se ejecuta correctamente.
+- En django, se ha modificado el comportamiento del guardado de registros por metodo post. Ahora se incluye el usuario que crea el registro, y se suprime el valor predeterminado de root.
+- Correccion de errores y mejoras menores
+
+Versión 0.0.1.0:
+- Se ha finalizado el desarrollo de la api de proveedores y clientes.
+- Se ha finalizado el desarrollo de autenticación por JWT
+
+##### NUEVA VERSION DISPOIBLE - 0.0.1.1 #####
+Para mayor contexto, vea al archivo history.txt en la carpeta docs.
+Tener en cuenta: {base_url} es la url base de la api: http://localhost:8000/api/v1
+Versión 0.0.1.1:
+- Se ha inicado el desarrollo del modulo de gestion:
+    1. Ahora, el sistema hace CRUD sobre las marcas registradas en el sistema.
+    2. Ahora, django posee habilitados los metodos para hacer CRUD sobre los modelos de Marcas y Categorías.
+    3. Ahora, se hace CRUD sobre las categorias del sistema.
+    4. Se han añadido urls extra para consultas especificas en los modulos de Marcas por Categoria, ahora se hace CRUD sobre esa tabla.
+    5. Ahora, se hace CRUD sobre los productos.
+    URLS de interés:
+    {base_url}/gestion/marcas/ -> GET, POST (consulta todas las marcas y guarda marcas nuevas)
+    {base_url}/gestion/marcas/{id}/ -> GET, PUT, DELETE (consulta, actualiza y elimina una marca)
+    {base_url}/gestion/marcas/search/{nombre} -> GET (consulta todas las categorias cuyo nombre sea parecido al provisto)
+    {base_url}/gestion/categorias/{idCategoria}/detalles/ -> GET, POST (consulta las las marcas añadidas a la categoria y las guarda)
+    {base_url}/categorias/{idCategoria}/filtro/ -> GET (consulta las marcas que no estan añadidas en una categoria)
+    {base_url}/categorias/{idCategoria}/eliminar/{idMarca}/ -> DELETE (elimina una marca añadida en la categoria)
+    {base_url}/categorias/search/{idCategoria}/marca/{nombreMarca}/ -> GET (busca las marcas que posee la categoria)
+    {base_url}/categorias/find/{nombreCategoria}/ -> GET (filtro simple, busca una categoria por su nombre)
+    {base_url}/categorias/find/{nombreCategoria}/{nombreMarca}/ -> GET (filtro complejo, busca las marcas por su nombre que posee una categoria provista por url)
+    NOTA: Los modelos de Categorías tienen las urls parecidas, solo cambia el modelo invocado de marca a categoria.
+
+- se han eliminado logs de version aterior
+- correccion de errores menores
+- se han optimizado consultas
+Observaciones: se ha modificado la configuracion de django, ahora se configura base de datos para que pueda usarse una local
+
+Versión 0.0.1.2:
+1. Se ha creado en django CRUD base para Cotizaciones:
+URLS de interés:
+{base_url}/cotizaciones/ (GET, POST) -> crea una nueva cotizacion
+{base_url}/cotizaciones/delete/{cotizacionID}/ ( DELETE) ->  elimina una cotizacion
+{base_url}/cotizaciones/detail/{cotizacionID}/  (GET,POST) -> obtiene los productos que se encuentran en una cotizacion y los almacena
+{base_url}/cotizacion/detail/{id de cliente o cotizacion}/ (GET,DELETE) -> obtiene cotizaciones por id o por id de cliete ; elimina cotizaion
+2. Correccion de errores y mejoras en vistas vue
+3. se ha añadido una nueva api para consultar productos por nombre:
+{base_url}/productos/search/{nombre del producto}/ (GET) -> obtiene productos por nombre
+4. Ahora, se ha creado el store para crear las cotizaciones, y son funcionales. Se muestra pdf con la cotizacion creada.
+5. Ahora, en django se procesan las tareas de almacenado y consulta de Cotizaciones y productos. Se almacenan de forma correcta en la base de datos.
+6. Ahora, se han añadido ventas siguiendo patrones de cotizacion y urls. Ahora se restan unidades de ventas a las unidades de productos.
+
+Versión 0.0.1.3:
+1. Corrección de errores y mejoras
+2. Añadido documento explicativo de uso
+3. Se han añadido permisos de usuario, ahora las vistas muestran mensajes de error si el usuario no tiene permisos para acceder a ellas.
+4. Se ha modificado la interfaz, ahora se muestran opciones segun el usuario que inicie sesión.
+5. se ha extendido el tiempo de espera para el cierre de sesión. ahora la sesión se cierra a los 25 minutos de inactividad. Se previene moviendo el mouse sobre la pantalla.
+6. Se ha modificado la configuracion de facturas, ahora despues de crear una cotizacion o venta, se muestra una ventana con los detalles de la operacion y un botón para imprimir la factura si así se desea.
+7. Ahora en la vista home para Administrador y Bodeguista, se muestran los productos que estan por debajo del stock minimo, se ha añaddido un boton para imprimir reporte en PDF.
+
+Añadida Documentacion de uso y diagramas. Pueden verse en la carpeta docs.
+
