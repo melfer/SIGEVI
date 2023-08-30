@@ -50,11 +50,9 @@ export const useVendorStore = defineStore("vendor", () => {
   };
 
   const incrementQuantity = (product) => {
-    console.log(product);
     const existingItem = item.value.find((item) => item.id === product.id);
     if (existingItem) {
       existingItem.cantidad += 1;
-      console.log(product.subtotal);
       existingItem.subtotal = existingItem.subtotal + product.precio;
       total.value = total.value + product.precio;
     }

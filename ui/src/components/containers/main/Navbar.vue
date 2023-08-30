@@ -7,7 +7,7 @@
                       class="nav-link link-dark px-2 active">Home
           </RouterLink>
         </li>
-        <li v-if="auth &&sesion.userData?.groups &&(sesion.userData.groups.includes('Cajero' )|| sesion.userData.groups.includes('Administrador'))"
+        <li v-if="auth &&sesion.userData?.groups &&(sesion.userData.groups.includes('Cajero' )|| sesion.userData.groups.includes('Administrador') || sesion.userData.groups.includes('Bodeguista'))"
             class="nav-item dropdown">
           <a aria-expanded="false" class="nav-link link-dark px-2 dropdown-toggle" data-bs-toggle="dropdown" href="#"
              role="button">
@@ -15,10 +15,10 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <RouterLink :to="{ name: 'clientes' }" class="dropdown-item">Clientes</RouterLink>
+              <RouterLink :to="{ name: 'clientes' }" class="dropdown-item" v-if=" sesion.userData.groups.includes('Administrador')|| sesion.userData.groups.includes('Cajero')">Clientes</RouterLink>
             </li>
             <li>
-              <RouterLink :to="{ name: 'proveedores' }" class="dropdown-item">Proveedores</RouterLink>
+              <RouterLink :to="{ name: 'proveedores' }" class="dropdown-item" v-if="sesion.userData.groups.includes('Bodeguista')">Proveedores</RouterLink>
             </li>
 
           </ul>
@@ -90,7 +90,7 @@
                 <span v-if="auth  " class="fs-4">SIGEVI <i
                     class="bi bi-asterisk"></i> -
                     {{
-                    sesion.userData.groups.includes('Cajero', 'Administrador', 'Bodeguista') || sesion.userData.is_superuser ? (sesion.userData.is_superuser ? 'Super Usuario' : sesion.userData.groups[0]) : 'Invitado'
+                    sesion.userData.groups.includes('Cajero', 'Administrador', 'Bodeguista') || sesion.userData.is_superuser || sesion.userData.groups[0] ? (sesion.userData.is_superuser ? 'Super Usuario' : sesion.userData.groups[0]) : 'Invitado'
                   }}
                 </span>
 
