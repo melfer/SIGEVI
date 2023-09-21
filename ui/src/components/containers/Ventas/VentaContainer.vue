@@ -70,12 +70,8 @@ const add2cart = (product) => {
 }
 
 watchEffect(() => {
-    if (search.value != '' || search.value != ' ') {
-        filterProducts(search.value)
-    }
-    else {
-        data.value = []
-    }
+  search.value.length ? filterProducts(search.value) : data.value = []
+    
 })
 
 

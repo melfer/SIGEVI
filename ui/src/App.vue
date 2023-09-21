@@ -4,6 +4,8 @@ import Navbar from './components/containers/main/Navbar.vue';
 import { ref, onBeforeMount, watchEffect } from 'vue'
 import { sesionStore } from '@/stores/sesion'
 import { useRouter } from 'vue-router'
+import {userIsNotLogged} from '@/validators/login.validator'
+
 const sesion = sesionStore()
 const dateTime = ref('')
 const auth = ref(false)
@@ -12,6 +14,7 @@ onBeforeMount(() => {
   setInterval(() => {
     dateTime.value = new Date().toLocaleString()
     sesion.setSessionTimer()
+    userIsNotLogged()    
   }, 1000)
 })
 </script>
