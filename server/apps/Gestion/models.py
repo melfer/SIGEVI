@@ -44,7 +44,7 @@ class Producto(models.Model):
         verbose_name="Indique el Valor del producto")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.PROTECT,
                                   null=True, blank=True, verbose_name="Indique el Proveedor: ")
-    referencia = models.ForeignKey(MarcaCategoria, on_delete=models.PROTECT)
+    referencia = models.ForeignKey(MarcaCategoria, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(
         max_length=50, verbose_name="Creado por: ", default="root")

@@ -88,10 +88,8 @@ const searchData = async () => {
 
     .then((response) => {
             categories.value = response.data
-            console.log(response.data)
         })
         .catch((error) => {
-            console.log(error.response.status)
             categories.value = []
             if (error.response.status === 401 || error.response.status === 403) {
                 url.push({ name: 'unauthorized' })

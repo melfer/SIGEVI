@@ -106,7 +106,7 @@ class CategoriaDetail(APIView):
 class CategoriaSearch(APIView):
     permission_classes = [isBodeguista | isAdmin]
     def get(self, request, name, format=None):
-        categorias = Categoria.objects.filter(Q( nombre__icontains=name)|Q(id=name))[:10]
+        categorias = Categoria.objects.filter(nombre__icontains=name)[:10]
         serializer = CategoriaSerializer(categorias, many=True)
         return Response(serializer.data)
 

@@ -42,7 +42,6 @@ onMounted(() => {
 
 const getData = async () => {
     const response = await findClientByID(url.currentRoute.value.params.id)
-    console.log(response.data)
     if (response.status === 401) {
         url.push({ name: 'unauthorized' })
     }

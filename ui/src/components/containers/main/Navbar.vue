@@ -4,7 +4,7 @@
       <ul class="nav me-auto">
         <li class="nav-item">
           <RouterLink v-if="auth" :to="{ name: 'home' }" aria-current="page"
-                      class="nav-link link-dark px-2 active">Home
+                      class="nav-link link-dark px-2 active">Inicio
           </RouterLink>
         </li>
         <li v-if="auth &&sesion.userData?.groups &&(sesion.userData.groups.includes('Cajero' )|| sesion.userData.groups.includes('Administrador') || sesion.userData.groups.includes('Bodeguista'))"
@@ -18,7 +18,7 @@
               <RouterLink :to="{ name: 'clientes' }" class="dropdown-item" v-if=" sesion.userData.groups.includes('Administrador')|| sesion.userData.groups.includes('Cajero')">Clientes</RouterLink>
             </li>
             <li>
-              <RouterLink :to="{ name: 'proveedores' }" class="dropdown-item" v-if="sesion.userData.groups.includes('Bodeguista')">Proveedores</RouterLink>
+              <RouterLink :to="{ name: 'proveedores' }" class="dropdown-item" v-if="sesion.userData.groups.includes('Bodeguista','Administrador') || sesion.userData.is_superuser">Proveedores</RouterLink>
             </li>
 
           </ul>
@@ -60,7 +60,7 @@
           </ul>
         </li>
 
-        <li class="nav-item"><a v-if="auth" class="nav-link link-dark px-2" href="#">About</a></li>
+        
       </ul>
       <ul v-if="auth" class="nav">
         <li class="nav-item">
@@ -74,10 +74,10 @@
       </ul>
       <ul v-else class="nav">
         <li class="nav-item">
-          <RouterLink :to="{ name: 'login' }" class="nav-link link-dark px-2">Login</RouterLink>
+          <RouterLink :to="{ name: 'login' }" class="nav-link link-dark px-2">Entrar</RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink :to="{name:'register'}" class="nav-link link-dark px-2">Sign up</RouterLink>
+          <RouterLink :to="{name:'register'}" class="nav-link link-dark px-2">Registrarse</RouterLink>
         </li>
       </ul>
     </div>

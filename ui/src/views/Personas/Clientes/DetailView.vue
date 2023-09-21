@@ -48,8 +48,6 @@ onMounted(async () => {
         findClientByID(url.currentRoute.value.params.id)
             .then((response) => {
                 data.value = response.data
-                console.log(data)
-
             })
             .catch((error) => {
                 if (error.response.status === 401 || error.response.status === 403) {

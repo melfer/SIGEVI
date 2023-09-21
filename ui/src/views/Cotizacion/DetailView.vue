@@ -52,6 +52,7 @@ const id = url.currentRoute.value.params.id
 const data = ref([])
 const cliente = ref([])
 const productos = ref([])
+const loading = ref(false)
 onMounted(() => {
     getData()
 })

@@ -51,7 +51,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
-import {  getVendingsByIdOrClientID, getVendingData } from '@/apis/origins/operaciones.origins'
+import {  getVendingById, getVendingData } from '@/apis/origins/operaciones.origins'
 import { useRouter } from 'vue-router';
 import html2pdf from 'html2pdf.js'
 import { watchEffect } from 'vue';
@@ -73,11 +73,11 @@ onMounted(() => {
 })
 
 const getData = async () => {
-    const response = await getVendingsByIdOrClientID(url.currentRoute.value.params.id)
+    const response = await getVendingById(url.currentRoute.value.params.id)
     venta_id.value = url.currentRoute.value.params.id
-    vendedor.value = response.data[0].created_by
-    cliente.value = response.data[0].cliente[0].id + ' - ' + response.data[0].cliente[0].nombre + ' ' + response.data[0].cliente[0].apellido
-    total.value = response.data[0].total
+    vendedor.value = response.data.created_by
+    cliente.value = response.data.cliente.id + ' - ' + response.data.cliente.nombre + ' ' + response.data.cliente.apellido
+    total.value = response.data.total
     getProducts(venta_id.value)
 }
 
